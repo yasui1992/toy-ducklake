@@ -1,5 +1,19 @@
 ARG BASE_IMAGE=debian:bookworm-slim
 ARG DUCKDB_VERSION=1.3.0
+ARG USERNAME=nonoroot
+ARG UID=1000
+ARG GID=1000
+
+
+FROM ${BASE_IMAGE} AS base
+ARG USERNAME
+ARG UID
+ARG GID
+
+RUN groupadd -g ${GID} ${USERNAME} \
+ && useradd -ms /bin/sh -u ${UID} -g ${GID} ${USERNAME}
+USER ${USERNAME}
+
 
 FROM ${BASE_IMAGE} AS builder
 ARG DUCKDB_VERSION
@@ -17,7 +31,7 @@ RUN mkdir -p /opt/duckdb/bin \
  && rm /tmp/duckdb.zip
 
 
-FROM ${BASE_IMAGE} AS runtime
+FROM base AS runtime
 COPY --from=builder /opt/duckdb/bin/duckdb /opt/duckdb/bin/duckdb
 
 ENV PATH=/opt/duckdb/bin:${PATH}
