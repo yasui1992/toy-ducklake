@@ -22,4 +22,8 @@ COPY --from=builder /opt/duckdb/bin/duckdb /opt/duckdb/bin/duckdb
 
 ENV PATH=/opt/duckdb/bin:${PATH}
 
+RUN --mount=type=bind,source=install_ducklake.sql,target=install_ducklake.sql \
+    duckdb -c ".read install_ducklake.sql"
+
+WORKDIR /tmp/ducklake
 CMD [ "duckdb" ]

@@ -1,0 +1,4 @@
+tmp/*
+!tmp/ducklake/
+tmp/ducklake/*
+!tmp/ducklake/.gitkeep
