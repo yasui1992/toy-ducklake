@@ -1,0 +1,14 @@
+# git
+.git
+.gitignore
+
+# Docker
+.dockerignore
+Dockerfile*
+
+# Makefile
+Makefile*
+
+# meta documents
+README.md
+LICENSE
