@@ -30,14 +30,18 @@ RUN mkdir -p /opt/duckdb/bin \
  && unzip /tmp/duckdb.zip -d /opt/duckdb/bin \
  && rm /tmp/duckdb.zip
 
+COPY .duckdbrc /tmp/.duckdb
+
 
 FROM base AS runtime
+ARG USERNAME
+ARG UID
+ARG GID
+
 COPY --from=builder /opt/duckdb/bin/duckdb /opt/duckdb/bin/duckdb
+COPY --from=builder --chown=${UID}:${GID} /tmp/.duckdb /home/${USERNAME}/.duckdbrc
 
 ENV PATH=/opt/duckdb/bin:${PATH}
-
-RUN --mount=type=bind,source=sql/install_ducklake.sql,target=install_ducklake.sql \
-    duckdb -c ".read install_ducklake.sql"
 
 WORKDIR /tmp/ducklake
 CMD [ "duckdb" ]
