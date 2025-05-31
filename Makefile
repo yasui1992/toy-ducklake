@@ -14,6 +14,15 @@ run:
 	-it \
 	duckdb-cli \
 
+run-local-ui:
+	@docker run \
+	--rm \
+	--network host \
+	-v $(PWD)/tmp/ducklake:/tmp/ducklake \
+	-it \
+	duckdb-cli \
+	duckdb -ui
+
 
 .PHONY: run-create-table
 run-create-table:

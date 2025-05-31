@@ -41,7 +41,11 @@ ARG GID
 COPY --from=builder /opt/duckdb/bin/duckdb /opt/duckdb/bin/duckdb
 COPY --from=builder --chown=${UID}:${GID} /tmp/.duckdb /home/${USERNAME}/.duckdbrc
 
+# Required for secure HTTPS communication with https://ui.duckdb.org
+COPY --from=builder /etc/ssl/certs /etc/ssl/certs
+COPY --from=builder /etc/ca-certificates.conf /etc/ca-certificates.conf
+COPY --from=builder /usr/share/ca-certificates /usr/share/ca-certificates
+
 ENV PATH=/opt/duckdb/bin:${PATH}
 
-WORKDIR /tmp/ducklake
 CMD [ "duckdb" ]

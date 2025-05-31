@@ -1,2 +1,2 @@
 INSTALL ducklake;
-ATTACH 'ducklake:metadata.ducklake' AS lake (DATA_PATH '/tmp/ducklake/');
+ATTACH 'ducklake:/tmp/ducklake/metadata.ducklake' AS lake (DATA_PATH '/tmp/ducklake/');
