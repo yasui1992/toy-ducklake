@@ -8,7 +8,7 @@ DuckLakeで遊ぶ
 # Dockerイメージのビルド
 make build
 
-# ペンギンデータをダウンロードしてテーブル作成する
+# TPC-H SF1のデータセットをレイクにロードする
 make run-create-table
 
 # Dockerコンテナの起動
