@@ -11,8 +11,11 @@ make build
 # TPC-H SF1のデータセットをレイクにロードする
 make run-create-table
 
-# Dockerコンテナの起動
+# Dockerコンテナの起動 (DuckDB CLI)
 make run
+
+# Dockerコンテナの起動 (DuckDB Local UI)
+make run-local-ui
 ```
 
 ## 所感
