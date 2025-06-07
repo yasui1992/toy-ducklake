@@ -30,7 +30,7 @@ RUN mkdir -p /opt/duckdb/bin \
  && unzip /tmp/duckdb.zip -d /opt/duckdb/bin \
  && rm /tmp/duckdb.zip
 
-COPY .duckdbrc /tmp/.duckdb
+COPY .duckdbrc /tmp/.duckdbrc
 
 
 FROM base AS runtime
@@ -39,7 +39,7 @@ ARG UID
 ARG GID
 
 COPY --from=builder /opt/duckdb/bin/duckdb /opt/duckdb/bin/duckdb
-COPY --from=builder --chown=${UID}:${GID} /tmp/.duckdb /home/${USERNAME}/.duckdbrc
+COPY --from=builder --chown=${UID}:${GID} /tmp/.duckdbrc /home/${USERNAME}/.duckdbrc
 
 # Required for secure HTTPS communication with https://ui.duckdb.org
 COPY --from=builder /etc/ssl/certs /etc/ssl/certs
