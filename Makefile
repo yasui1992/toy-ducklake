@@ -24,12 +24,12 @@ run-local-ui:
 	duckdb -ui
 
 
-.PHONY: run-create-table
-run-create-table:
+.PHONY: run-load-tpch
+run-load-tpch:
 	@docker run \
 	--rm \
 	-v $(PWD)/tmp/ducklake:/tmp/ducklake \
-	-v $(PWD)/sql/create_table.sql:/tmp/create_table.sql \
+	-v $(PWD)/sql/load_tpch.sql:/tmp/load_tpch.sql \
 	-it \
 	duckdb-cli \
-	duckdb -c ".read /tmp/create_table.sql"
+	duckdb -c ".read /tmp/load_tpch.sql"
