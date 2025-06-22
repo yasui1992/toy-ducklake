@@ -1,6 +1,6 @@
 # toy-ducklake
 
-DuckLakeで遊ぶ
+[DuckLake](https://duckdb.org/docs/stable/core_extensions/ducklake.html)で遊ぶ
 
 ## DuckLakeとは？
 
@@ -32,4 +32,4 @@ make run-local-ui
 - LakeHouseと呼ぶに相応しい、DataLakeとDataBaseの中間のような仕組みで面白い
   - 実データをparquetにしてDuckDBの強みを生かしつつ、容量の少ないメタデータをDBに移行するのは納得感がある
 - NAS上に作る簡易DataLakeとして使えそう
-- S3上に構築したときの「S3 Tables with DuckDB」 vs 「S3 Bucket with Ducklake」のProp.とCons.を比べてみたい
+- S3上に構築したときの「S3 Tables with DuckDB」 vs 「S3 Bucket with Ducklake」のPros.とCons.を比べてみたい
